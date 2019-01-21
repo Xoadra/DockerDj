@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'dockerdj.wsgi.application'
 ## Database
 ## https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': os.environ.get( 'NAME' ),
@@ -91,7 +91,7 @@ DATABASES = {
 		'USER': os.environ.get( 'USER' ),
 		'PASSWORD': os.environ.get( 'PASSWORD' )
 	}
-}
+} """
 
 
 ## Password validation
