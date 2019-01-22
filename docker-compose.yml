@@ -1,0 +1,35 @@
+
+
+
+
+version: "3"
+services:
+    ## Define a service called web using the image generated beforehand
+    web:
+        ## Substitute username/repo:tag with your name and image details
+        image: xoadra/tutdj:v1
+        deploy:
+            ## Run 5 instances of the image as a service that is named web
+            replicas: 5
+            resources:
+                ## Limit resources to 10% of CPU across all cores and 50MB of RAM
+                limits:
+                    cpus: "0.1"
+                    memory: 50M
+            ## Immediately restart containers if one of them happens to fail
+            restart_policy:
+                condition: on-failure
+        ## Map the host port of 4000 to the exposed web service port at 80
+        ports:
+            - "4000:80"
+        ## Network identified here in this service with webnet as its name
+        ## Have web’s containers share port 80 via a load-balanced network
+        ## Containers themselves publish to web’s port 80 at an ephemeral port
+        networks:
+            - webnet
+## Establish the network identified as webnet using the default settings
+## This network will be a load-balanced overlay network by default
+networks:
+    webnet:
+
+

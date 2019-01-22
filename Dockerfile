@@ -1,3 +1,7 @@
+
+
+
+
 ## Use an official Python runtime as a parent image
 FROM python:3.7
 
@@ -18,3 +22,6 @@ ENV SELF Zoey
 
 ## Run app.py when the container launches
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:80" ]
+
+
+
