@@ -27,6 +27,20 @@ services:
         ## Containers themselves publish to web’s port 80 at an ephemeral port
         networks:
             - webnet
+    ## Peer service of the predefined web service identified further above
+    visualizer:
+        image: dockersamples/visualizer:stable
+        ports:
+            - "8080:8080"
+        ## Gives the visualizer service access to the host's Docker socket file 
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
+        deploy:
+            ## Only run this service on a swarm manager and never a worker
+            placement:
+                constraints: [node.role == manager]
+        networks:
+            - webnet
 ## Establish the network identified as webnet using the default settings
 ## This network will be a load-balanced overlay network by default
 networks:
